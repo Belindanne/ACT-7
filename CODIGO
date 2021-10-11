@@ -1,0 +1,74 @@
+package actividad7;
+import java.io.*;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+/**
+ *
+ * @author annip
+ */
+public class ACTIVIDAD7 {
+
+       public static BufferedReader lectorNumero 
+               = new BufferedReader(new InputStreamReader(System.in)); 
+	
+public static void main(String[] args) throws IOException {
+          
+        getNumerosPrimos();
+        System.out.println();
+		getFibonacci();
+	}
+//MÉTODO NÚMEROS PRIMOS//
+	public static void getNumerosPrimos() throws IOException {
+				
+	      int i =0;
+	      int numero1 =0;
+	      
+	      String  NumerosPrimos = "";
+	      
+              System.out.println("----------------------------------SECCIÓN NÚMEROS PRIMOS-----------------------------------------------------");
+	      System.out.println("Bienvenid@,¿cuántos números primos deseas obtener en tu secuencia?");
+	      
+	      int limitePrimos = 0;
+	      limitePrimos = Integer.parseInt(lectorNumero.readLine());
+	      
+	      int secuencia = 1;	      	      
+	      for (i = 1; secuencia <= limitePrimos; i++){ 		 		  
+                 int contador=0; 
+	         for(numero1 =i; numero1>=1; numero1--){
+	        	 
+			    if(i%numero1==0){
+				contador = contador + 1;
+			    }
+			 }		         
+		 if (contador ==2){
+                     secuencia = secuencia + 1;
+		    NumerosPrimos = NumerosPrimos + i + " ";
+		 }	
+		 		 
+	      }	
+	      System.out.println("La secuencia de numeros primos generada fue la siguiente: ");
+	      System.out.println(NumerosPrimos);
+              System.out.println("-------------------------------------------------------------------------------------------------------------");	      
+	}
+        
+//MÉTODO SECUENCIA FIBONACCI//	
+	public static void getFibonacci() throws IOException {						
+              System.out.println("----------------------------------SECCIÓN SECUENCIA FIBONACCI------------------------------------------------");
+	      System.out.println("Bienvenid@,¿de cuántos números deseas hacer tu secuencia fibonacci?");
+              		int limiteFibonacci = 0;
+              limiteFibonacci = Integer.parseInt(lectorNumero.readLine());
+              
+		int num1 = 0, num2 = 1;
+	    System.out.println("La secuencia de Fibonacci generada es la siguiente");
+
+	    for (int i = 1; i <= limiteFibonacci; ++i) {
+	      System.out.print(num1 + ", ");
+	      int proxNum = num1 + num2;
+	      num1 = num2;
+	      num2 = proxNum;
+              
+	    }	    	    	    	    
+	}			
+}
