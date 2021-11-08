@@ -1,0 +1,77 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package juego_cartas;
+
+/**
+ *
+ * @author annip
+ */
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
+public class DECK {
+    private List<CARD> carta;
+    private List<CARD>carta_nueva;
+    private Integer Num_carta=52;
+
+public List<CARD> getCarta(){
+    return carta;
+     }
+
+public void setCarta(List<CARD> carta){
+    this.carta= carta;
+    }
+
+public Integer getNum_carta(){
+    return Num_carta;
+    }
+
+public void setNum_Carta(Integer Num_Carta){
+    this.Num_carta= Num_carta;
+    }
+
+
+//DECLARACIÓN DE MÉTODOS
+public String Mezclar(){
+        System.out.println("\n-----------------MEZCLA DEL DECK----------------------");
+    Collections.shuffle(carta);
+        return "...Se mezcló el Deck";
+    
+     }
+ 
+
+public String Head()throws Exception{
+    
+    System.out.println("\n----------------PRIMERA CARTA DEL DECK-------------------");
+    CARD carta=getCarta().get(0);
+        System.out.println(getCarta().get(0).getPalo()+ " " +getCarta().get(0).getColor()+ " " + getCarta().get(0).getValor());
+            getCarta().remove(0);  
+                return "Quedan "+ getCarta().size() + " cartas disponibles en el Deck \n";
+    
+    }
+public String Pick()throws Exception{
+    System.out.println("\n--------------------CARTA AL AZAR--------------------------"); 
+        Random cartaAzar = new Random();
+            int index= cartaAzar.nextInt(getCarta().size());
+                CARD carta= getCarta().get(index);
+                    System.out.println(getCarta().get(index).getPalo() + " " + getCarta().get(index).getColor() + " " + getCarta().get(index).getValor());
+                    getCarta().remove(0);
+                          return "Quedan "+ getCarta().size() + " cartas disponibles en el Deck\n";
+}
+public String Hand()throws Exception{
+   
+   System.out.println("\n------------------MANO DE CARTAS-------------------------");
+        for(int i=0;i<5;i++){
+                     System.out.println(getCarta().get(0).getPalo()+ " " +getCarta().get(0).getColor()+ " "+ getCarta().get(0).getValor());
+         getCarta().remove(0);
+  
+        }
+            return "Quedan "+ getCarta().size() + " cartas disponibles en el Deck\n";
+
+}
+}
