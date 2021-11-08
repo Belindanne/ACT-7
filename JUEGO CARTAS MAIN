@@ -1,0 +1,112 @@
+package juego_cartas;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.IOException;
+
+/**
+ *
+ * @author annip
+ */
+public class Juego_cartas {
+  boolean exit;
+    
+    /**
+     * @param args the command line arguments
+     */
+ 
+
+public static BufferedReader leerOpcion= new BufferedReader(new InputStreamReader(System.in));
+    
+
+public static void main(String[] args) throws Exception {
+       Menu();
+}
+public static void Menu() throws Exception {
+
+        String [] palo={"PIKA","CORAZON","DIAMANTE","TREBOL"};
+        String[] valor={"A","2","3","4","5","6","7","8","9","10","J","Q","K"};
+            Integer count=1;
+             DECK deck=new DECK();
+             deck.setCarta(new ArrayList<CARD>());
+                    for (int i=0; i<palo.length;i++){
+                        for (int j=0; j< valor.length;j++){
+                            CARD carta= new CARD(palo[i],getColor(palo[i]), valor[j]);
+                                deck.getCarta().add(carta);  
+                    }
+                }
+                    
+             System.out.println("**** Iniciamos con un deck que cuenta con un tamaño de "+deck.getCarta().size()+" cartas *****    \n");             
+    
+         System.out.println("*-------------------------------------------------------*");
+         System.out.println("*                                                       *");
+         System.out.println("*               Bienvenido a Póker!                     *");
+         System.out.println("*                                                       *");
+         System.out.println("*-------------------------------------------------------*");
+               int seleccion=0;
+
+         do{
+             Scanner scn = new Scanner(System.in);
+          System.out.println("\nPor favor seleciona una opción");
+         System.out.println("1. Mezclar Deck");
+         System.out.println("2. Sacar una carta");
+         System.out.println("3. Carta al Azar");
+         System.out.println("4. Generar una mano de 5 cartas");
+         System.out.println("5. Salir");
+         
+ seleccion= scn.nextInt();
+ 
+      if (deck.getCarta().size()<=3) {
+    	throw new Exception("El deck ya no cuenta con cartas");
+    }    
+      
+   
+    else if (seleccion == 1){
+		System.out.println(deck.Mezclar());          
+	}
+    
+	else if (seleccion == 2){
+        System.out.println(deck.Head());
+	}
+        
+	else if (seleccion == 3){
+        System.out.println(deck.Pick());
+	}
+        
+	else if (seleccion == 4){
+        System.out.println(deck.Hand());            
+	}
+        
+	else if (seleccion == 0){
+		System.out.println("Fin del programa");
+		break;
+	}
+        
+	else throw new Exception("La opción que ingresaste no existe");
+    
+    }
+         while (seleccion > 0 || seleccion < 5);
+}
+    
+    
+         
+
+public static String getColor(String palo){
+    if (palo.toLowerCase().equals("pika")||palo.toLowerCase().equals("trebol")){
+            return "NEGRO";
+    }    
+    if (palo.toLowerCase().equals("corazon")||palo.toLowerCase().equals("diamante")){   
+        return "ROJO";
+    }
+    return null;
+
+    
+}
+}
+
+
+
+
+
